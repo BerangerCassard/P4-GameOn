@@ -28,3 +28,18 @@ function closeModal() {
 
 // Close modal event
 modalCross[0].addEventListener ("click", closeModal);
+
+// form must be valide when user click on "submit"
+const form = document.getElementById ('form');
+const firstName = document.getElementById ('first');
+
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+})
+
+function validate () {
+  if (firstName.value === '') {
+    alert ('there is a problem with the first field');
+    return false;
+  }
+}
