@@ -57,6 +57,7 @@ const errorBirth = document.getElementById ('error-birth');
 const errorQuantity = document.getElementById ('error-quantity');
 const errorCity = document.getElementById ('error-city');
 const errorValidation = document.getElementById ('error-validation');
+const submitValidation = document.getElementById('validation-message');
 
 
 
@@ -115,6 +116,15 @@ function validate () {
       errorValidation.style.display = 'none';
     }, 3000)          
     return false;
+  }
+
+  else {
+    submitValidation.style.display = 'block';
+    setTimeout(() => {
+      submitValidation.style.display = 'none';
+      return true;
+    }, 4000)
+    
   }
 
 }
