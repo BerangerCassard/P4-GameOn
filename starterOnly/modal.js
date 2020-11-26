@@ -49,6 +49,7 @@ const loc5 = document.getElementById ('location5');
 const loc6 = document.getElementById ('location6');
 const dateFormat = /^\d{2}[./-]\d{2}[./-]\d{4}$/;
 const numbers = /^[0-9]+$/;
+
 const validation = document.getElementById ('checkbox1')
 const errorFirst = document.getElementById ('error-first');
 const errorLast = document.getElementById ('error-last');
@@ -57,7 +58,9 @@ const errorBirth = document.getElementById ('error-birth');
 const errorQuantity = document.getElementById ('error-quantity');
 const errorCity = document.getElementById ('error-city');
 const errorValidation = document.getElementById ('error-validation');
-const submitValidation = document.getElementById('validation-message');
+
+const confirmation = document.getElementById ('confirmation');
+const confirmationCloseBtn = document.getElementsByClassName('btn-close');
 
 
 
@@ -65,66 +68,67 @@ form.addEventListener('submit', (e) => {
   e.preventDefault();
 })
 
+// #3 : error messages onsubmit
+
 function validate () {
-  if (firstName.value === '' || firstName.value == null && firstName.length < 2) {
+  if (firstName.value === '' || firstName.value == null || firstName.value.length < 2) {
     errorFirst.innerText = 'Veuillez entrer 2 caractères ou plus pour le champ du Prénom.';
-    setTimeout(() => {
-      errorFirst.style.display = 'none';
-    }, 3000)
-
-    return false;
+    errorFirst.style.color = 'red';
+    errorFirst.style.fontSize = '0.8rem';
+    errorFirst.style.marginTop = '10px';
+    firstName.style.border = 'solid red 2px';
   } 
-  else if (lastName.value === '' || lastName.value == null && lastName.length < 2) { 
-    errorLast.innerText = 'Veuillez entrer 2 caractères ou plus pour le champ du Nom.';
-    setTimeout(() => {
-      errorLast.style.display = 'none';
-    }, 3000)
 
-    return false;
+  else 
+    if (lastName.value === '' || lastName.value == null || lastName.value.length < 2) { 
+      errorLast.innerText = 'Veuillez entrer 2 caractères ou plus pour le champ du Nom.';
+      errorLast.style.color = 'red';
+      errorLast.style.fontSize = '0.8rem';
+      errorLast.style.marginTop = '10px';
+      lastName.style.border = 'solid red 2px';      
   } 
-  else if (!/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(eMail.value)) { 
-    errorMail.innerText = 'Veuillez renseigner une addresse mail valide';
-    setTimeout(() => {
-      errorMail.style.display = 'none';
-    }, 3000)
 
-    return false;
+  else 
+    if (!/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(eMail.value)) { 
+      errorMail.innerText = 'Veuillez renseigner une addresse mail valide';
+      errorMail.style.color = 'red';
+      errorMail.style.fontSize = '0.8rem';
+      errorMail.style.marginTop = '10px';
+      eMail.style.border = 'solid red 2px';
   }
-  // else if (!birthDate.value.match(dateFormat)) { 
-  //   alert ("Veuillez remplir votre date d'anniversaire");
+  // else if (!/^\d{2}[./-]\d{2}[./-]\d{4}$/.test(birthDate.value)) { 
+  //   errorBirth.innerText = 'Veuillez remplir votre date danniversaire';
+  //   setTimeout(() => {
+  //     errorBirth.style.display = 'none';
+  //   }, 3000)
   //   return false;
   // }
   else if (!quantityTournament.value.match(numbers)) { 
     errorQuantity.innerText = 'Vous devez indiquer un nombre';
-    setTimeout(() => {
-      errorQuantity.style.display = 'none';
-    }, 3000)    
-    return false;
+    errorQuantity.style.color = 'red';
+    errorQuantity.style.fontSize = '0.8rem';
+    errorQuantity.style.marginTop = '10px';
+    quantityTournament.style.border = 'solid red 2px';
   }
 
   else if (!loc1.checked && !loc2.checked && !loc3.checked && !loc4.checked && !loc5.checked && !loc6.checked) { 
     errorCity.innerText = 'Vous devez choisir une ville';
-    setTimeout(() => {
-      errorCity.style.display = 'none';
-    }, 3000)          
-    return false;
+    errorCity.style.color = 'red';
+    errorCity.style.fontSize = '0.8rem';
+    errorCity.style.marginTop = '10px';          
   }
 
   else if (!validation.checked) {
-    errorValidation.innerText = 'Vous devez vérifier que vous acceptez les termes et conditions';
-    setTimeout(() => {
-      errorValidation.style.display = 'none';
-    }, 3000)          
-    return false;
+    errorValidation.innerText = 'Vous devez vérifier que vous acceptez les termes et conditions';          
   }
 
   else {
-    submitValidation.style.display = 'block';
-    setTimeout(() => {
-      submitValidation.style.display = 'none';
-      return true;
-    }, 4000)
-    
+    form.style.display = "none";
+    confirmation.style.display = "flex";
   }
-
 }
+
+// Close modal form
+confirmationCloseBtn[0].addEventListener("click", closeModal);
+
+console.log(firstName.value)
