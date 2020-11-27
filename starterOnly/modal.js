@@ -71,58 +71,91 @@ form.addEventListener('submit', (e) => {
 // #3 : error messages onsubmit
 
 function validate () {
+  let firstChecked;
+  let lastChecked;
+  let mailChecked;
+  let tournamentChecked;
+  let radioChecked;
+  let conditionsChecked;
+
   if (firstName.value === '' || firstName.value == null || firstName.value.length < 2) {
     errorFirst.innerText = 'Veuillez entrer 2 caractères ou plus pour le champ du Prénom.';
     errorFirst.style.color = 'red';
     errorFirst.style.fontSize = '0.8rem';
     errorFirst.style.marginTop = '10px';
     firstName.style.border = 'solid red 2px';
-  } 
+  } else {
+    errorFirst.style.display = 'none';
+    firstName.style.border = 'none';
+    firstChecked = true;
+  };
 
-  else 
     if (lastName.value === '' || lastName.value == null || lastName.value.length < 2) { 
       errorLast.innerText = 'Veuillez entrer 2 caractères ou plus pour le champ du Nom.';
       errorLast.style.color = 'red';
       errorLast.style.fontSize = '0.8rem';
       errorLast.style.marginTop = '10px';
       lastName.style.border = 'solid red 2px';      
-  } 
+  }  else {
+    errorLast.style.display = 'none';
+    lastName.style.border = 'none';
+    lastChecked = true;
+  };
 
-  else 
     if (!/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(eMail.value)) { 
       errorMail.innerText = 'Veuillez renseigner une addresse mail valide';
       errorMail.style.color = 'red';
       errorMail.style.fontSize = '0.8rem';
       errorMail.style.marginTop = '10px';
       eMail.style.border = 'solid red 2px';
-  }
-  // else if (!/^\d{2}[./-]\d{2}[./-]\d{4}$/.test(birthDate.value)) { 
-  //   errorBirth.innerText = 'Veuillez remplir votre date danniversaire';
-  //   setTimeout(() => {
-  //     errorBirth.style.display = 'none';
-  //   }, 3000)
-  //   return false;
-  // }
-  else if (!quantityTournament.value.match(numbers)) { 
+  } else {
+    errorMail.style.display = 'none';
+    eMail.style.border = 'none';
+    mailChecked = true;
+  };
+
+  // // else if (!/^\d{2}[./-]\d{2}[./-]\d{4}$/.test(birthDate.value)) { 
+  // //   errorBirth.innerText = 'Veuillez remplir votre date danniversaire';
+  // //   setTimeout(() => {
+  // //     errorBirth.style.display = 'none';
+  // //   }, 3000)
+  // //   return false;
+  // // }
+
+  if (!quantityTournament.value.match(numbers)) { 
     errorQuantity.innerText = 'Vous devez indiquer un nombre';
     errorQuantity.style.color = 'red';
     errorQuantity.style.fontSize = '0.8rem';
     errorQuantity.style.marginTop = '10px';
     quantityTournament.style.border = 'solid red 2px';
-  }
+  } else {
+    errorQuantity.style.display = 'none';
+    quantityTournament.style.border = 'none';
+    tournamentChecked = true;
+  };
 
-  else if (!loc1.checked && !loc2.checked && !loc3.checked && !loc4.checked && !loc5.checked && !loc6.checked) { 
+  if (!loc1.checked && !loc2.checked && !loc3.checked && !loc4.checked && !loc5.checked && !loc6.checked) { 
     errorCity.innerText = 'Vous devez choisir une ville';
     errorCity.style.color = 'red';
     errorCity.style.fontSize = '0.8rem';
     errorCity.style.marginTop = '10px';          
-  }
+  } else {
+    errorCity.style.display = 'none';
+    radioChecked = true;
+  };
 
-  else if (!validation.checked) {
-    errorValidation.innerText = 'Vous devez vérifier que vous acceptez les termes et conditions';          
-  }
+  if (!validation.checked) {
+    errorValidation.innerText = 'Vous devez vérifier que vous acceptez les termes et conditions';
+    errorValidation.style.color = 'red';
+    errorValidation.style.fontSize = '0.8rem';
+    errorValidation.style.marginTop = '10px';
+    errorValidation.style.marginBottom = '20px';
+  } else {
+    errorValidation.style.display = 'none';
+    conditionsChecked = true;
+  };
 
-  else {
+  if (firstChecked == true && lastChecked == true && mailChecked == true && tournamentChecked == true && radioChecked == true && conditionsChecked == true) {
     form.style.display = "none";
     confirmation.style.display = "flex";
   }
@@ -132,3 +165,8 @@ function validate () {
 confirmationCloseBtn[0].addEventListener("click", closeModal);
 
 console.log(firstName.value)
+
+
+// among radio, one is check 
+
+// firstName.value !== '' && firstName.value !== null && firstName.value.length > 1 && validation.checked && quantityTournament.value.match(numbers) && lastName.value !== '' && lastName.value !== null && lastName.value.length > 1 && /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(eMail.value) && radioChecked == true
