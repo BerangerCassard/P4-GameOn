@@ -79,6 +79,8 @@ function validate () {
   let radioChecked;
   let conditionsChecked;
 
+  console.log(birthDate.value)
+
   if (firstName.value === '' || firstName.value == null || firstName.value.length < 2) {
     errorFirst.innerText = 'Veuillez entrer 2 caractères ou plus pour le champ du Prénom.';
     errorFirst.style.color = 'red';
@@ -115,7 +117,7 @@ function validate () {
     mailChecked = true;
   };
 
-  if (!/^\d{2}[./-]\d{2}[./-]\d{4}$/.test(birthDate.value)) { 
+  if (!birthDate.value.match(/^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$/)) { 
     errorBirth.innerText = 'Veuillez remplir votre date danniversaire';
     errorBirth.style.color = 'red';
     errorBirth.style.fontSize = '0.8rem';
