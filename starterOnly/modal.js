@@ -74,6 +74,7 @@ function validate () {
   let firstChecked;
   let lastChecked;
   let mailChecked;
+  let birthChecked;
   let tournamentChecked;
   let radioChecked;
   let conditionsChecked;
@@ -114,13 +115,17 @@ function validate () {
     mailChecked = true;
   };
 
-  // // else if (!/^\d{2}[./-]\d{2}[./-]\d{4}$/.test(birthDate.value)) { 
-  // //   errorBirth.innerText = 'Veuillez remplir votre date danniversaire';
-  // //   setTimeout(() => {
-  // //     errorBirth.style.display = 'none';
-  // //   }, 3000)
-  // //   return false;
-  // // }
+  if (!/^\d{2}[./-]\d{2}[./-]\d{4}$/.test(birthDate.value)) { 
+    errorBirth.innerText = 'Veuillez remplir votre date danniversaire';
+    errorBirth.style.color = 'red';
+    errorBirth.style.fontSize = '0.8rem';
+    errorBirth.style.marginTop = '10px';
+    birthDate.style.border = 'solid red 2px';
+    } else {
+    errorBirth.style.display = 'none';
+    birthDate.style.border = 'none';
+    birthChecked = true;      
+    }
 
   if (!quantityTournament.value.match(numbers)) { 
     errorQuantity.innerText = 'Vous devez indiquer un nombre';
@@ -155,7 +160,7 @@ function validate () {
     conditionsChecked = true;
   };
 
-  if (firstChecked == true && lastChecked == true && mailChecked == true && tournamentChecked == true && radioChecked == true && conditionsChecked == true) {
+  if (firstChecked == true && lastChecked == true && mailChecked == true && tournamentChecked == true && radioChecked == true && conditionsChecked == true && birthChecked == true) {
     form.style.display = "none";
     confirmation.style.display = "flex";
   }
@@ -165,8 +170,3 @@ function validate () {
 confirmationCloseBtn[0].addEventListener("click", closeModal);
 
 console.log(firstName.value)
-
-
-// among radio, one is check 
-
-// firstName.value !== '' && firstName.value !== null && firstName.value.length > 1 && validation.checked && quantityTournament.value.match(numbers) && lastName.value !== '' && lastName.value !== null && lastName.value.length > 1 && /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(eMail.value) && radioChecked == true
