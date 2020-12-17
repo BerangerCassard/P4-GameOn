@@ -1,11 +1,18 @@
 function editNav() {
   var x = document.getElementById("myTopnav");
+  const icon = document.getElementsByClassName("icon");
+
   if (x.className === "topnav") {
     x.className += " responsive";
+    icon[0].style.color = "white";
   } else {
     x.className = "topnav";
+    icon[0].style.color = "#ff0000";
   }
+
 }
+
+
 
 // DOM Elements
 const modalbg = document.querySelector(".bground");
@@ -23,7 +30,7 @@ function launchModal() {
 
 //  #1 TODO : close modal
 
-// Close modal form
+// Close modal function
 function closeModal() {
   modalbg.style.display = "none";
 };
@@ -47,8 +54,11 @@ const loc3 = document.getElementById ('location3');
 const loc4 = document.getElementById ('location4');
 const loc5 = document.getElementById ('location5');
 const loc6 = document.getElementById ('location6');
+
 const dateFormat = /^\d{2}[./-]\d{2}[./-]\d{4}$/;
 const numbers = /^[0-9]+$/;
+
+// Const #3 validation 
 
 const validation = document.getElementById ('checkbox1')
 const errorFirst = document.getElementById ('error-first');
@@ -59,10 +69,13 @@ const errorQuantity = document.getElementById ('error-quantity');
 const errorCity = document.getElementById ('error-city');
 const errorValidation = document.getElementById ('error-validation');
 
+//  Const #4 confirmation
+
 const confirmation = document.getElementById ('confirmation');
 const confirmationCloseBtn = document.getElementsByClassName('btn-close');
 
 
+//  #2 : Keep form data entries
 
 form.addEventListener('submit', (e) => {
   e.preventDefault();
@@ -162,13 +175,14 @@ function validate () {
     conditionsChecked = true;
   };
 
+  // #4 Confirmation when submit succeed
+
   if (firstChecked == true && lastChecked == true && mailChecked == true && tournamentChecked == true && radioChecked == true && conditionsChecked == true && birthChecked == true) {
     form.style.display = "none";
     confirmation.style.display = "flex";
   }
 }
 
-// Close modal form
+  // #4 Close confirmation form
 confirmationCloseBtn[0].addEventListener("click", closeModal);
 
-console.log(firstName.value)
