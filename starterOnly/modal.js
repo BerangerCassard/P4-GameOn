@@ -94,7 +94,7 @@ function validate () {
 
   console.log(birthDate.value)
 
-  if (firstName.value === '' || firstName.value == null || firstName.value.length < 2) {
+  if (!firstName.value.match(/^(?=.*[a-zA-Z])/) || firstName.value == '' || firstName.value == null || firstName.value.length < 2) {
     errorFirst.innerText = 'Veuillez entrer 2 caractères ou plus pour le champ du Prénom.';
     errorFirst.style.color = 'red';
     errorFirst.style.fontSize = '0.8rem';
@@ -106,7 +106,7 @@ function validate () {
     firstChecked = true;
   };
 
-    if (lastName.value === '' || lastName.value == null || lastName.value.length < 2) { 
+    if (!lastName.value.match(/^(?=.*[a-zA-Z])/) || lastName.value == '' || lastName.value == null || lastName.value.length < 2) { 
       errorLast.innerText = 'Veuillez entrer 2 caractères ou plus pour le champ du Nom.';
       errorLast.style.color = 'red';
       errorLast.style.fontSize = '0.8rem';
@@ -118,7 +118,7 @@ function validate () {
     lastChecked = true;
   };
 
-    if (!/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(eMail.value)) { 
+    if (!/^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/.test(eMail.value)) { 
       errorMail.innerText = 'Veuillez renseigner une addresse mail valide';
       errorMail.style.color = 'red';
       errorMail.style.fontSize = '0.8rem';
