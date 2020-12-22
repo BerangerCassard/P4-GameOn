@@ -470,7 +470,7 @@ input[data-error]::after {
   color: #fff;
   position: relative;
   text-align: left;
-  min-width: 424px;
+  min-width: 80%;
 }
 .hero-content::after {
   content: "";
@@ -528,6 +528,13 @@ footer {
   padding-right: 2vw;
   margin: 0 20px;
 }
+@media screen and (max-width: 1000px) {
+  .hero-headline {
+    white-space: normal !important;
+  }
+}
+
+
 @media screen and (max-width: 800px) {
   .hero-section {
     display: block;
@@ -551,6 +558,7 @@ footer {
   .hero-text {
     width: unset;
     font-size: 1.5rem;
+    text-align: justify;
   }
   .hero-img img {
     border-radius: 10px;
@@ -577,8 +585,11 @@ footer {
     display: block;
     margin-top: -15px;
   }
+  .icon {
+    top:17px !important;
+  }
   .hero-headline {
-    font-size: 48px;
+    font-size: 36px;
   }
   .hero-text {
     font-size: 13px;
@@ -597,6 +608,12 @@ footer {
     top: 2%;
   }
 
+}
+
+@media screen and (max-width: 320px) {
+  .icon {
+    top:43px !important;
+  }
 }
 
 @keyframes modalopen {
